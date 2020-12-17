@@ -45,7 +45,7 @@ const nodes = [
 ];
 
 const fs = require("fs");
-const storageHandler = require("./src/index");
+const storageHandler = require("file-storage-node-handler");
 const StorageHandler = new storageHandler.FileStorage(nodes);
 
 // Returns a FileResponse
