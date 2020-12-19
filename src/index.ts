@@ -75,4 +75,20 @@ export class FileStorage {
     let responseBuffer: Buffer = await response.buffer();
     return responseBuffer;
   }
+
+  public async delFile(fileID: number, nodeID: string): Promise<Buffer> {
+    // Get a node, throw an error if none
+    let node: Node = this.getNode(nodeID);
+    if (!node) throw TypeError(`Expected "Node" got "${typeof node}"`);
+    // Make a GET request
+    let response = await fetch(node.url + 'delete/' + fileID, {
+      method: 'get',
+      headers: {
+        token: node.token
+      }
+    })
+    // Return the Buffer since it has no idea what is stored in that buffer
+    let responseBuffer: Buffer = await response.buffer();
+    return responseBuffer;
+  }
 }

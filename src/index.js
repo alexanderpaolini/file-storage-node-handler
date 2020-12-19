@@ -116,6 +116,33 @@ var FileStorage = /** @class */ (function () {
             });
         });
     };
+    FileStorage.prototype.delFile = function (fileID, nodeID) {
+        return __awaiter(this, void 0, void 0, function () {
+            var node, response, responseBuffer;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        node = this.getNode(nodeID);
+                        if (!node)
+                            throw TypeError("Expected \"Node\" got \"" + typeof node + "\"");
+                        return [4 /*yield*/, node_fetch_1["default"](node.url + 'delete/' + fileID, {
+                                method: 'get',
+                                headers: {
+                                    token: node.token
+                                }
+                            })
+                            // Return the Buffer since it has no idea what is stored in that buffer
+                        ];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.buffer()];
+                    case 2:
+                        responseBuffer = _a.sent();
+                        return [2 /*return*/, responseBuffer];
+                }
+            });
+        });
+    };
     return FileStorage;
 }());
 exports.FileStorage = FileStorage;

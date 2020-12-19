@@ -20,4 +20,5 @@ export declare class FileStorage {
     private getNode;
     saveFile(data: Buffer, nodeID?: string): Promise<FileResponse>;
     getFile(fileID: number, nodeID: string): Promise<Buffer>;
+    delFile(fileID: number, nodeID: string): Promise<Buffer>;
 }
